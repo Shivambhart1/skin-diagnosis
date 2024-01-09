@@ -1,0 +1,34 @@
+@font-face {
+  font-family: Apercu;
+  src: url("./fonts/Apercu\ Pro\ Light.otf");
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Apercu;
+  position: relative;
+}
+
+.mainHero {
+  display: flex;
+  overflow: auto;
+}
+
+.hero {
+  background-color: antiquewhite;
+  display: inline-block;
+  justify-content: center;
+  width: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  min-height: 100vh;
+  padding: 10px 10%;
+  overflow: hidden;
+  /* background-color: gray; */
+}
