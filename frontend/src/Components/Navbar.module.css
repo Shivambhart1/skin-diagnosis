@@ -1,46 +1,60 @@
-@font-face {
-    font-family: ApercuBold;
-    src: url("../fonts/Apercu\ Pro\ Bold\ Italic.otf");
-}
-
 .main {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  position: relative;
 }
 
-.nav_ul_div ul {
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    gap: 30px;
+.nav_team_name h1 {
+  font-family: "Space Grotesk", sans-serif;
+}
+.nav_team_name a {
+  text-decoration: none;
+  color: #58111a;
 }
 
-.nav_ul_div ul li {
-    display: inline-block;
+/* Mobile Navigation Styles */
+.mobile_nav {
+  display: none; /* Hidden by default */
 }
 
-.nav_ul_div ul li a {
-    position: relative;
-    text-decoration: none;
-    overflow: hidden;
-    color: black;
-    transition: transform 0.3s ease-in-out;
-}
-.nav_ul_div li a:hover {
-    top: -2px;
-    border-bottom: 1.5px solid #27282c;
-    transform: translateY(-0.5px);
+.mobile_nav.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%; /* Position below the navbar */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 10;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.nav_team_name h1{
-    font-family: ApercuBold;
+.open a {
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* Desktop Navigation Styles */
+.nav_links {
+  display: flex;
+  gap: 30px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .nav_links {
+    display: none; /* Hidden for mobile by default */
+  }
 }

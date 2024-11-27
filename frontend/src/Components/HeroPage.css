@@ -1,85 +1,91 @@
-@font-face {
-  font-family: ApercuLight;
-  src: url("../fonts/Apercu\ Light.otf");
-}
-
-.heroSection {
-  margin: 0 auto;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  gap: 70px;
-  padding: 20px;
-  justify-content: center;
-  margin-top: 8%;
-  border-radius: 12px;
-  max-height: 650px;
-  /* box-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.11),
-    0 2px 2px rgba(0, 0, 0, 0.11),
-    0 4px 4px rgba(0, 0, 0, 0.11),
-    0 8px 8px rgba(0, 0, 0, 0.11),
-    0 16px 16px rgba(0, 0, 0, 0.11),
-    0 32px 32px rgba(0, 0, 0, 0.11); */
-}
-
-.heroSection h1 {
+body {
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
-  font-size: 80px;
-  line-height: 100px;
-  line-break: auto;
 }
-
+.heroSection h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.2;
+}
 .heroSection p {
-  display: inline-block;
-  font-size: 22px;
-  line-height: 30px;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .heroSection button {
-  border-radius: 5px;
+  font-family: "Space Grotesk", sans-serif;
+  border: 2px solid #8b4513;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  width: 26%;
-  height: 50px;
-  padding: 6px 20px;
-  font-size: 18px;
-  background-color: #654321;
-  color: white;
-  transition: 0.5s;
+  height: 56px;
+  padding: 0 40px;
+  font-size: 17px;
+  background-color: #8b4513;
+  color: #ffffff;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
 }
 
 .heroSection button:hover {
-  border: 1px solid #654321;
-  border-radius: 30px;
-  background-color: white;
-  color: #654321;
+  background-color: #a0522d;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
-@media only screen and (width < 768px) {
+.heroSection button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: all 0.4s;
+}
+
+.heroSection button:hover::before {
+  left: 100%;
+}
+
+@media only screen and (max-width: 768px) {
   .heroSection {
     flex-direction: column;
-    position: relative;
-    top: 52px;
+    gap: 40px;
   }
-  .heroSection h1 {
-    font-size: 60px;
-    line-break: auto;
-  }
-}
 
-@media only screen and (width < 600px) {
-  .heroSection {
-    gap: 30px;
+  .heroSection h1 {
+    font-size: 48px;
   }
+
+  .heroSection p {
+    font-size: 16px;
+  }
+
   .heroSection button {
-    width: 26%;
+    padding: 0 24px;
   }
 }
 
-@media only screen and (width < 390px) {
+@media only screen and (max-width: 480px) {
   .heroSection h1 {
-    font-size: 2px;
-    line-height: 35px;
+    font-size: 36px;
+  }
+
+  .heroSection p {
+    font-size: 14px;
+  }
+
+  .heroSection button {
+    padding: 0 20px;
   }
 }

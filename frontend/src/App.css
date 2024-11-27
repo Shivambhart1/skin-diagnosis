@@ -2,10 +2,7 @@
   font-family: Apercu;
   src: url("./fonts/Apercu\ Pro\ Light.otf");
 }
-
-body {
-  scroll-behavior: smooth;
-}
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap");
 
 * {
   margin: 0;
@@ -16,12 +13,13 @@ body {
 }
 
 .mainHero {
-  display: flex;
-  overflow: auto;
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Adjust as needed */
 }
 
 .hero {
-  background-color: antiquewhite;
   display: inline-block;
   justify-content: center;
   width: 100%;
@@ -30,5 +28,5 @@ body {
   min-height: 100vh;
   padding: 10px 10%;
   overflow: hidden;
-  /* background-color: gray; */
+  background-color: #f1f5f9;
 }
