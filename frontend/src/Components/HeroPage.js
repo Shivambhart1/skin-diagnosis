@@ -1,8 +1,7 @@
-import { React, useState } from "react";
+import React from "react";
 import "./HeroPage.css";
-import Form from "./Form";
-import { BrowserRouter as Router, Switch, Mode, Link } from "react-router-dom";
-import images from "../images/images.jpeg";
+import { Link } from "react-router-dom";
+// import heroimage from "heroimage.jpg";
 
 const heroSection = {
   title: "Get correct result of your Diagnosis",
@@ -10,23 +9,21 @@ const heroSection = {
 };
 
 const HeroPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggle = () => {
-    setIsOpen((isOpen) => !isOpen);
-  };
-
   return (
-    <>
-      <section className="heroSection">
-        <div className="left">
+    <section className="heroSection">
+      <div className="hero-content">
+        <div className="hero-text">
           <h1>{heroSection.title}</h1>
           <p>{heroSection.para}</p>
           <Link to="/diagnosis">
             <Button text="Get Started" />
           </Link>
         </div>
-      </section>
-    </>
+      </div>
+      <div className="hero-image">
+        <img src="heroimage.jpg" alt="Diagnosis illustration" />
+      </div>
+    </section>
   );
 };
 

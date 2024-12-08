@@ -1,76 +1,166 @@
-import { React, useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import styles from "./Form.module.css";
 import { CircularProgress } from "@mui/material";
+import { DISEASE_DETAILS } from "../values";
 
 const Form = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [responseData, setResponseData] = useState("");
-  const [loading, SetLoading] = useState(false);
-  const [error, SetError] = useState("");
+  const [responseData, setResponseData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [dragOver, setDragOver] = useState(false);
 
+  // Handles file input change
   const handleFileChange = (e) => {
-    //Checking for files being uploaded or not
-    console.log(e.target.files[0]);
-
     setSelectedFile(e.target.files[0]);
+    setResponseData(null);
   };
 
+  // Upload and process the file
   const handleUpload = () => {
     const formData = new FormData();
     formData.append("file", selectedFile);
-    SetLoading(true);
+    setLoading(true);
+
     axios
       .post("http://localhost:5000/api/upload", formData)
       .then((response) => {
-        console.log("File Uploaded succesfully!", response.data);
-        setTimeout(() => {
-          setResponseData(response.data);
-        }, 2000);
-        SetLoading(false);
+        const diseaseName = response.data.disease_name;
+        setResponseData({
+          diseaseName: diseaseName,
+          // highlightedImage: `data:image/png;base64,${response.data.highlighted_image}`,
+        });
+        setLoading(false);
       })
       .catch((error) => {
-        SetError(`Error Uploading files : ${error}`);
-        console.log("Error Uploading files : ", error);
+        setError(`Error Uploading files: ${error}`);
+        setLoading(false);
       });
-
-    const getUserIpAndLocation = async () => {
-      try {
-        // Fetch IP address
-        const ipResponse = await axios.get("https://api.ipify.org?format=json");
-        const ip = ipResponse.data.ip;
-
-        const locationResponse = await axios.get(
-          `https://geo.ipify.org/api/v2/country,city?apiKey=at_XJBPf7qaVJlN6WmyBa446TewIqJ5Z&ipAddress=8.8.8.8`
-        );
-        const locationData = locationResponse.data;
-        console.log("User location data:", locationData);
-
-        return locationData;
-      } catch (error) {
-        console.error("Error fetching user location:", error);
-        return null;
-      }
-    };
-    getUserIpAndLocation();
   };
 
+  // Reset the form and state
+  const handleReset = () => {
+    setSelectedFile(null);
+    setResponseData(null);
+    setLoading(false);
+    setError("");
+  };
+
+  // Drag and Drop Handlers
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragOver(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragOver(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragOver(false);
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      setSelectedFile(files[0]);
+      setResponseData(null);
+    }
+  };
+
+  // Get disease details
+  const diseaseDetails = responseData
+    ? DISEASE_DETAILS[responseData.diseaseName] || {
+        cause: "Detailed cause not available",
+        prevention: ["Consult a healthcare professional"],
+      }
+    : null;
+
   return (
-    <section className={styles.formDiv}>
-      <div className={styles.imageForm}>
-        <input type="file" onChange={handleFileChange} />
-        <div className={styles.formbutton}>
-          <button onClick={handleUpload}>Upload</button>
+    <div className={styles.container}>
+      <section className={styles.formDiv}>
+        <div
+          className={`${styles.imageForm} ${dragOver ? styles.dragOver : ""}`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          <div className={styles.dropZone}>
+            {/* Hidden File Input */}
+            <input
+              id="fileInput"
+              type="file"
+              onChange={handleFileChange}
+              className={styles.fileInput}
+            />
+
+            {/* Label for File Input */}
+            {selectedFile ? (
+              <p style={{ color: "blue" }}>
+                <b>Selected File: {selectedFile.name}</b>
+              </p>
+            ) : (
+              <label htmlFor="fileInput" className={styles.fileLabel}>
+                Drag and drop a file here, or <span>click to select</span>
+              </label>
+            )}
+
+            {/* Display uploaded image */}
+            {selectedFile && (
+              <div className={styles.imagePreview}>
+                <img
+                  src={URL.createObjectURL(selectedFile)}
+                  alt="Uploaded Preview"
+                  className={styles.previewImage}
+                />
+              </div>
+            )}
+          </div>
+
+          <div className={styles.formbutton}>
+            <button onClick={handleUpload} disabled={!selectedFile}>
+              Upload & Process Image
+            </button>
+          </div>
+
+          {loading && <CircularProgress />}
+
+          {responseData && (
+            <div className={styles.resultContainer}>
+              <h2>{responseData.diseaseName}</h2>
+              {/* <img
+                src={responseData.highlightedImage}
+                alt="Highlighted Diagnosis"
+                className={styles.highlightedImage}
+              /> */}
+
+              <div className={styles.diseaseDetails}>
+                <h3>Cause</h3>
+                <p>{diseaseDetails.cause}</p>
+
+                <h3>Prevention</h3>
+                <ul>
+                  {diseaseDetails.prevention.map((prev, index) => (
+                    <li key={index}>{prev}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {/* Reset Button */}
+          <div className={styles.formbutton}>
+            <button onClick={handleReset} style={{ backgroundColor: "red" }}>
+              Reset
+            </button>
+          </div>
         </div>
-        {loading ? (
-          <CircularProgress style={{ alignSelf: "center" }} />
-        ) : error ? (
-          <h1>{error}</h1>
-        ) : (
-          <h1 style={{ color: "black" }}>{responseData}</h1>
-        )}
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

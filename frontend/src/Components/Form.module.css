@@ -1,163 +1,148 @@
-/* Container styles */
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .formDiv {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 700px;
-  min-height: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border: 2px dashed #e2e8f0;
-  border-radius: 16px;
-  background-color: #f8fafc;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
 }
 
-.formDiv:hover {
-  border-color: #94a3b8;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* Form styles */
 .imageForm {
   width: 100%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-.imageForm h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 0;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
   text-align: center;
 }
 
-/* Button container */
+.dropZone {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 2px dashed #999;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+}
+
 .formbutton {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 1rem;
+  margin-bottom: 20px;
 }
 
-/* Upload button styles */
-.imageForm button {
-  width: 100%;
-  max-width: 280px;
-  padding: 0.875rem 1.5rem;
-  background-color: #22c55e;
+.formbutton button {
+  padding: 10px 20px;
+  background-color: #4caf50;
   color: white;
-  font-weight: 500;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.imageForm button:hover {
-  background-color: #16a34a;
-  border-radius: 25px;
-  transform: translateY(-1px);
+.formbutton button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
-.imageForm button:active {
-  transform: translateY(1px);
+.resultContainer {
+  margin-top: 20px;
+  text-align: center;
 }
 
-/* File input styles */
-input[type="file"] {
-  position: relative;
-  width: 100%;
-  padding: 0.75rem;
-  color: #475569;
-  background-color: #f1f5f9;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+/* Error message styling */
+.errorMessage {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.clearButton {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  margin-top: 20px;
 }
 
-input[type="file"]:hover {
-  border-color: #94a3b8;
-  background-color: #f8fafc;
+.previewImage {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin-top: 20px;
 }
 
-/* Custom file input button */
-input[type="file"]::file-selector-button {
-  padding: 0.5rem 1rem;
-  margin-right: 1rem;
-  font-weight: 500;
-  color: #475569;
-  background-color: white;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
+.formbutton button {
+  font-family: "JetBrains Mono", monospace;
+  margin-top: 10px;
+}
+
+.resultContainer {
+  margin-top: 20px;
+}
+
+.clearButton:hover {
+  background-color: #d32f2f;
+}
+
+.resultContainer h2 {
+  font-family: "Space Grotesk", sans-serif;
+  color: rgb(134, 6, 6);
+  margin-bottom: 20px;
+}
+
+.highlightedImage {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.diseaseDetails {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.diseaseDetails h3 {
+  color: black;
+  border-bottom: 2px solid #4caf50;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.diseaseDetails p {
+  color: black;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.diseaseDetails ul {
+  color: black;
+  list-style-type: disc;
+  padding-left: 30px;
+}
+
+.diseaseDetails li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.fileLabel {
   cursor: pointer;
-  transition: all 0.2s ease;
+  color: blue;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
-input[type="file"]::file-selector-button:hover {
-  background-color: #f1f5f9;
-  border-color: #94a3b8;
-}
-
-/* Upload icon and label */
-input[type="file"]::before {
-  position: absolute;
-  pointer-events: none;
-  top: 50%;
-  left: 1rem;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  content: "";
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23475569'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
-}
-
-input[type="file"]::after {
-  position: absolute;
-  pointer-events: none;
-  top: 50%;
-  left: 3.5rem;
-  transform: translateY(-50%);
-  color: #475569;
-  content: "Upload File";
-  font-weight: 500;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .formDiv {
-    padding: 1rem;
-    margin: 1rem;
-  }
-
-  .imageForm {
-    padding: 1.5rem;
-  }
-
-  .imageForm button {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .imageForm h3 {
-    font-size: 1.25rem;
-  }
-
-  input[type="file"] {
-    padding: 0.5rem;
-  }
-
-  input[type="file"]::file-selector-button {
-    padding: 0.375rem 0.75rem;
-  }
+.fileLabel:hover {
+  text-decoration: none;
 }

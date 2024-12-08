@@ -1,32 +1,117 @@
-@font-face {
-  font-family: Apercu;
-  src: url("./fonts/Apercu\ Pro\ Light.otf");
-}
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Apercu;
-  position: relative;
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 }
 
-.mainHero {
-  background-image: url("background.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh; /* Adjust as needed */
-}
-
-.hero {
-  display: inline-block;
+.heroSection {
+  display: flex;
   justify-content: center;
-  width: 100%;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  align-items: center;
   min-height: 100vh;
-  padding: 10px 10%;
+  padding: 20px;
+  gap: 40px;
+}
+
+.hero-content {
+  max-width: 800px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-text {
+  max-width: 600px;
+  margin-bottom: 200px;
+  text-align: left;
+}
+
+.hero-image {
+  flex: 1;
+  max-width: 50%;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px; /* Optional: adds rounded corners to the image */
+}
+
+.heroSection h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 60px;
+  color: #1a1a1a;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.heroSection p {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.heroSection button {
+  border: 2px solid #8b4513;
+  background-color: #8b4513;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  height: 56px;
+  padding: 0 40px;
+  font-size: 17px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
   overflow: hidden;
-  background-color: #f1f5f9;
+}
+
+@media only screen and (max-width: 768px) {
+  .heroSection {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .hero-image {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  .heroSection h1 {
+    font-size: 48px;
+  }
+
+  .heroSection p {
+    font-size: 16px;
+  }
+
+  .heroSection button {
+    padding: 0 24px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .heroSection h1 {
+    font-size: 36px;
+  }
+
+  .heroSection p {
+    font-size: 14px;
+  }
+
+  .heroSection button {
+    padding: 0 20px;
+  }
 }
