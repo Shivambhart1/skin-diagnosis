@@ -29,7 +29,6 @@ const Form = () => {
         const diseaseName = response.data.disease_name;
         setResponseData({
           diseaseName: diseaseName,
-          // highlightedImage: `data:image/png;base64,${response.data.highlighted_image}`,
         });
         setLoading(false);
       })
@@ -131,12 +130,24 @@ const Form = () => {
 
           {responseData && (
             <div className={styles.resultContainer}>
-              <h2>{responseData.diseaseName}</h2>
-              {/* <img
-                src={responseData.highlightedImage}
-                alt="Highlighted Diagnosis"
-                className={styles.highlightedImage}
-              /> */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h1
+                  style={{
+                    color: "green",
+                    fontSize: "24px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  (Predicted Disease) :{" "}
+                </h1>
+                <h2> {" " + responseData.diseaseName}</h2>
+              </div>
 
               <div className={styles.diseaseDetails}>
                 <h3>Cause</h3>

@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className={styles.navbar}>
         <div className={styles.nav_team_name}>
           <a href="/">
-            <h1>FINALYEAR</h1>
+            <h1>PRE-LIM-DIAG</h1>
           </a>
         </div>
 
