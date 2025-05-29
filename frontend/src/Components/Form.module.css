@@ -1,15 +1,13 @@
 .container {
-  width: 100%;
-  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
 .formDiv {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
 
 .imageForm {
@@ -33,10 +31,15 @@
 }
 
 .formbutton {
-  margin-bottom: 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
 }
 
 .formbutton button {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
   padding: 10px 20px;
   background-color: #4caf50;
   color: white;
@@ -44,7 +47,6 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
 .formbutton button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
@@ -71,6 +73,17 @@
   margin-top: 20px;
 }
 
+.predictions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.predictions h3 {
+  color: black;
+}
+
 .previewImage {
   max-width: 100%;
   max-height: 300px;
@@ -79,7 +92,8 @@
 }
 
 .formbutton button {
-  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-family: "Inconsolata", monospace;
   margin-top: 10px;
 }
 

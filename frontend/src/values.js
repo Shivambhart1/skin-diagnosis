@@ -197,7 +197,7 @@ export const DISEASE_DETAILS = {
   "Actinic Keratosis Intraepithelical Carcinoma": {
     cause:
       "Prolonged exposure to ultraviolet (UV) radiation from sunlight or tanning beds, typically affecting people with fair skin. Other factors include a history of frequent sunburns and weakened immune systems.",
-    prevention: [
+    management: [
       "Use broad-spectrum sunscreen with SPF 30 or higher",
       "Wear protective clothing that covers arms and legs",
       "Avoid direct sun exposure during peak hours (10 AM to 4 PM)",
@@ -223,7 +223,7 @@ export const DISEASE_DETAILS = {
   "Basal Cell Carcinoma": {
     cause:
       "Excessive sun exposure, genetic predisposition, and cumulative UV radiation damage. People with fair skin, light-colored eyes, and a history of sunburns are at higher risk.",
-    prevention: [
+    management: [
       "Apply sunscreen daily",
       "Avoid prolonged sun exposure",
       "Wear protective clothing",
@@ -249,7 +249,7 @@ export const DISEASE_DETAILS = {
   Dermatofibroma: {
     cause:
       "Exact cause is unknown, but they may develop as a result of minor injuries, insect bites, or hormonal changes. They are more common in women and often develop in childhood or early adulthood.",
-    prevention: [
+    management: [
       "Protect skin from injuries",
       "Maintain good skin hygiene",
       "Avoid picking or irritating existing dermatofibromas",
@@ -271,7 +271,7 @@ export const DISEASE_DETAILS = {
   "Melanocytic Nevi": {
     cause:
       "Genetic factors, sun exposure, and hormonal changes. A person’s risk increases with a family history of melanoma or if they have many moles.",
-    prevention: [
+    management: [
       "Limit sun exposure, especially during peak hours",
       "Use sunscreen regularly with an SPF of 30 or higher",
       "Wear protective clothing",
@@ -293,7 +293,7 @@ export const DISEASE_DETAILS = {
   Melanoma: {
     cause:
       "Intense, intermittent sun exposure, genetic factors, and numerous moles increase the risk. It can occur in existing moles or as new growths.",
-    prevention: [
+    management: [
       "Avoid sunburns and tanning beds",
       "Use high SPF sunscreen (50 or higher)",
       "Wear protective clothing, hats, and sunglasses",
@@ -319,7 +319,7 @@ export const DISEASE_DETAILS = {
   "Vascular Lesion": {
     cause:
       "Genetic predisposition, hormonal changes, and age-related factors. Conditions like pregnancy, liver disease, or use of birth control may also increase the risk.",
-    prevention: [
+    management: [
       "Protect skin from sun damage",
       "Avoid excessive alcohol consumption",
       "Maintain a healthy weight",
@@ -343,7 +343,7 @@ export const DISEASE_DETAILS = {
   "Pseudophakic Bullous Keratopathy (PBK)": {
     cause:
       "Complications from cataract surgery, where damage occurs to the corneal endothelial cells. It may be caused by surgery-related trauma or underlying conditions like glaucoma.",
-    prevention: [
+    management: [
       "Choose experienced surgeons for cataract surgery",
       "Follow post-operative care instructions carefully",
       "Use medications prescribed by an ophthalmologist",
@@ -366,7 +366,7 @@ export const DISEASE_DETAILS = {
   "Systemic Sclerosis (SSC)": {
     cause:
       "Autoimmune disorder with unknown exact triggers, but genetic and environmental factors may contribute. It leads to the hardening and scarring of connective tissues.",
-    prevention: [
+    management: [
       "Early medical intervention for symptoms",
       "Manage stress and emotional well-being",
       "Avoid exposure to environmental toxins",
@@ -391,7 +391,7 @@ export const DISEASE_DETAILS = {
   "Seborrheic Keratosis (SK)": {
     cause:
       "Aging, genetic factors, and sun exposure are the primary causes. It is commonly seen in older adults and often appears in clusters.",
-    prevention: [
+    management: [
       "Protect skin from sun damage with sunscreen",
       "Maintain skin hydration",
       "Avoid harsh chemicals or treatments",

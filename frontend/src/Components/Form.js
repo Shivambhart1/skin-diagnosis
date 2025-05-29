@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import styles from "./Form.module.css";
 import { CircularProgress } from "@mui/material";
@@ -11,34 +11,35 @@ const Form = () => {
   const [error, setError] = useState("");
   const [dragOver, setDragOver] = useState(false);
 
-  // Handles file input change
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
     setResponseData(null);
   };
 
-  // Upload and process the file
   const handleUpload = () => {
     const formData = new FormData();
     formData.append("file", selectedFile);
     setLoading(true);
 
-    axios
-      .post("http://localhost:5000/api/upload", formData)
-      .then((response) => {
-        const diseaseName = response.data.disease_name;
-        setResponseData({
-          diseaseName: diseaseName,
-        });
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(`Error Uploading files: ${error}`);
-        setLoading(false);
-      });
+    setTimeout(() => {
+      axios
+        .post("http://localhost:5000/api/upload", formData)
+        .then((response) => {
+          setResponseData({
+            diseaseName: response.data.disease_name,
+            predictions: response.data.predictions,
+          });
+        })
+        .catch((error) => {
+          setError(`Error Uploading files: ${error}`);
+          setLoading(false);
+        })
+        .finally(() => {
+          setLoading(false);
+        })
+    }, 5000)
   };
 
-  // Reset the form and state
   const handleReset = () => {
     setSelectedFile(null);
     setResponseData(null);
@@ -46,7 +47,6 @@ const Form = () => {
     setError("");
   };
 
-  // Drag and Drop Handlers
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -71,12 +71,11 @@ const Form = () => {
     }
   };
 
-  // Get disease details
   const diseaseDetails = responseData
     ? DISEASE_DETAILS[responseData.diseaseName] || {
-        cause: "Detailed cause not available",
-        prevention: ["Consult a healthcare professional"],
-      }
+      cause: "Detailed cause not available",
+      prevention: ["Consult a healthcare professional"],
+    }
     : null;
 
   return (
@@ -89,7 +88,6 @@ const Form = () => {
           onDrop={handleDrop}
         >
           <div className={styles.dropZone}>
-            {/* Hidden File Input */}
             <input
               id="fileInput"
               type="file"
@@ -97,7 +95,6 @@ const Form = () => {
               className={styles.fileInput}
             />
 
-            {/* Label for File Input */}
             {selectedFile ? (
               <p style={{ color: "blue" }}>
                 <b>Selected File: {selectedFile.name}</b>
@@ -108,7 +105,6 @@ const Form = () => {
               </label>
             )}
 
-            {/* Display uploaded image */}
             {selectedFile && (
               <div className={styles.imagePreview}>
                 <img
@@ -121,12 +117,17 @@ const Form = () => {
           </div>
 
           <div className={styles.formbutton}>
-            <button onClick={handleUpload} disabled={!selectedFile}>
-              Upload & Process Image
+            <button onClick={handleUpload} disabled={!selectedFile || loading}>
+              {loading ? (
+                <>
+                  <CircularProgress style={{ width: "16px", height: "16px", color: "white" }} />
+                  Uploading
+                </>
+              ) : (
+                "Upload & process image"
+              )}
             </button>
           </div>
-
-          {loading && <CircularProgress />}
 
           {responseData && (
             <div className={styles.resultContainer}>
@@ -144,28 +145,44 @@ const Form = () => {
                     fontWeight: "bold",
                   }}
                 >
-                  (Predicted Disease) :{" "}
+                  (Predicted Disease) :
                 </h1>
-                <h2> {" " + responseData.diseaseName}</h2>
+                <h2> {error || responseData.diseaseName}</h2>
+              </div>
+              <div className={styles.predictions}>
+                <h3>Prediction array: [{responseData.predictions.join(", ")}]</h3>
               </div>
 
               <div className={styles.diseaseDetails}>
                 <h3>Cause</h3>
                 <p>{diseaseDetails.cause}</p>
 
-                <h3>Prevention</h3>
+                <h3>Management</h3>
                 <ul>
-                  {diseaseDetails.prevention.map((prev, index) => (
+                  {diseaseDetails?.management.map((prev, index) => (
                     <li key={index}>{prev}</li>
+                  ))}
+                </ul>
+
+                <h3>Symptoms</h3>
+                <ul>
+                  {diseaseDetails?.symptoms.map((symptom, index) => (
+                    <li key={index}>{symptom}</li>
+                  ))}
+                </ul>
+
+                <h3>Treatment</h3>
+                <ul>
+                  {diseaseDetails?.treatment.map((treatment, index) => (
+                    <li key={index}>{treatment}</li>
                   ))}
                 </ul>
               </div>
             </div>
           )}
 
-          {/* Reset Button */}
           <div className={styles.formbutton}>
-            <button onClick={handleReset} style={{ backgroundColor: "red" }}>
+            <button onClick={handleReset} style={{ backgroundColor: "red" }} disabled={!responseData}>
               Reset
             </button>
           </div>

@@ -1,9 +1,9 @@
-import { useState } from "react";
+
 import "./App.css";
 import Navbar from "./Components/Navbar";
 import HeroPage from "./Components/HeroPage";
 import DetectionPage from "./Components/DetectionPage";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SkinCare from "./Components/SkinCare";
 
 const App = () => {
